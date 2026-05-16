@@ -1,0 +1,126 @@
+import { StyleSheet, Dimensions } from 'react-native';
+import Constants from 'expo-constants';
+
+const { width, height } = Dimensions.get('window');
+// 헤더 높이를 슬림하게 조절
+const HEADER_HEIGHT = Constants.statusBarHeight + 75;
+
+export default StyleSheet.create({
+  header: {
+    height: HEADER_HEIGHT,
+    paddingTop: Constants.statusBarHeight + 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 25,
+    backgroundColor: 'rgba(18, 18, 18, 0.8)', // 투명도 조절하여 원이 비치게 함
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    zIndex: 10,
+  },
+  profileArea: { flexDirection: 'row', alignItems: 'center' },
+  avatar: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#1E1E1E',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+  profileInfo: { marginLeft: 12 },
+  profileName: { fontWeight: '800', fontSize: 16, color: '#fff' },
+  mbtiTag: { fontSize: 11, color: '#FF4D4D', fontWeight: '600', marginTop: 1 },
+  moreBtn: { padding: 8 },
+  scrollContent: {
+    paddingHorizontal: 25,
+    paddingTop: 15,
+    paddingBottom: 150, // 하단 홈 바 영역 침범 방지
+  },
+  title: { fontSize: 26, fontWeight: '800', marginTop: 25, color: '#fff' },
+  subtitle: { color: '#888', fontSize: 14, marginBottom: 25, marginTop: 5 },
+  emotionRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 25,
+  },
+  emoBtn: {
+    paddingVertical: 12,
+    borderRadius: 14,
+    backgroundColor: '#1A1A1A',
+    width: '23%',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+  emoText: { color: '#777', fontWeight: '600', fontSize: 13 },
+  selectedEmo: { backgroundColor: '#FF4D4D', borderColor: '#FF4D4D' },
+  selectedEmoText: { color: '#fff', fontWeight: '700' },
+  inputBox: {
+    backgroundColor: 'rgba(26, 26, 26, 0.9)',
+    padding: 20,
+    borderRadius: 22,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+  label: {
+    fontSize: 12,
+    color: '#FF4D4D',
+    fontWeight: '800',
+    marginBottom: 10,
+  },
+  input: { height: 90, textAlignVertical: 'top', fontSize: 16, color: '#fff' },
+  submitBtn: {
+    backgroundColor: '#FF4D4D',
+    padding: 18,
+    borderRadius: 16,
+    alignItems: 'center',
+    marginBottom: 35,
+  },
+  submitText: { color: '#fff', fontWeight: '800', fontSize: 16 },
+  logCard: {
+    backgroundColor: 'rgba(30, 30, 30, 0.75)',
+    padding: 18,
+    borderRadius: 20,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+  logCardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  logTag: {
+    backgroundColor: '#2D1A1A',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 8,
+  },
+  logTagText: { color: '#FF4D4D', fontSize: 11, fontWeight: '700' },
+  logTimeText: { color: '#666', fontSize: 11 },
+  logContentText: { fontSize: 15, color: '#DDD', lineHeight: 22 },
+  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.85)' },
+  dropDownMenu: {
+    position: 'absolute',
+    top: HEADER_HEIGHT + 10,
+    right: 25,
+    backgroundColor: '#1E1E1E',
+    borderRadius: 15,
+    width: 180,
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderColor: '#333',
+    elevation: 10,
+  },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+  },
+  menuText: { marginLeft: 10, fontSize: 14, color: '#fff' },
+});

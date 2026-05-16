@@ -6,10 +6,10 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{ headerShown: false, tabBarStyle: { display: 'none' } }}
     >
-      <Tabs.Screen name="index" />
-      <Tabs.Screen name="report" />
-      <Tabs.Screen name="challenge" />
-      <Tabs.Screen name="blend" />
+      <Tabs.Screen name="mainPage" />
+      <Tabs.Screen name="reportPage" />
+      <Tabs.Screen name="challengePage" />
+      <Tabs.Screen name="blendPage" />
     </Tabs>
   );
 }
