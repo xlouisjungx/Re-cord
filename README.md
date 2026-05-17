@@ -41,17 +41,15 @@ Re:cord는 사용자의 감정과 행동 기록을 기반으로
     <td><img src="image/IMG_1235.jpeg" width="100%" alt="감정로그 작성"/></td>
     <td><img src="image/IMG_1237.jpeg" width="100%" alt="마이크로 챌린지"/></td>
     <td><img src="image/IMG_1238.jpeg" width="100%" alt="블렌드 분석 1"/></td>
-    <td><img src="image/IMG_1239.jpeg" width="100%" alt="블렌드 분석 2"/></td>
+    <td><img src="image/IMG_1244.jpeg" width="100%" alt="블렌드 분석 2"/></td>
   </tr>
   <tr style="height: 20px;"></tr> <!-- 행 간 격리 공간 -->
   <tr>
-    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">3. 블렌드 분석 (3)</td>
     <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">4. 변화하는 나</td>
     <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">5. 이끄는 알림</td>
     <td style="width: 20%;"></td> <!-- 줄바꿈 후 빈 칸 채우기 -->
   </tr>
   <tr>
-    <td><img src="image/IMG_1244.jpeg" width="100%" alt="블렌드 분석 3"/></td>
     <td><img src="image/IMG_1241.jpeg" width="100%" alt="변화하는 나"/></td>
     <td><img src="image/IMG_1245.jpeg" width="100%" alt="이끄는 알림"/></td>
     <td></td>
