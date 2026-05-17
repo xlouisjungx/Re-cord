@@ -30,18 +30,33 @@ Re:cord는 사용자의 감정과 행동 기록을 기반으로
 
 # 실행 시, 앱 모습
 
-1. 감정로그 작성
-   ![alt text](image/IMG_1235.jpeg)
-2. 마이크로 챌린지
-   ![alt text](image/IMG_1237.jpeg)
-3. 블렌드를 통한 타인과 나에 대한 분석
-   ![alt text](image/IMG_1238.jpeg)
-   ![alt text](image/IMG_1239.jpeg)
-   ![alt text](image/IMG_1244.jpeg)
-4. 하루하루 감정로그를 적으며 변화하는 나
-   ![alt text](image/IMG_1241.jpeg)
-5. 앱의 알림을 통해 사용자를 이끄는 메시지
-   ![alt text](image/IMG_1245.jpeg)
+<table style="width: 100%; text-align: center;">
+  <tr>
+    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">1. 감정로그 작성</td>
+    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">2. 마이크로 챌린지</td>
+    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">3. 블렌드 분석 (1)</td>
+    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">3. 블렌드 분석 (2)</td>
+  </tr>
+  <tr>
+    <td><img src="image/IMG_1235.jpeg" width="100%" alt="감정로그 작성"/></td>
+    <td><img src="image/IMG_1237.jpeg" width="100%" alt="마이크로 챌린지"/></td>
+    <td><img src="image/IMG_1238.jpeg" width="100%" alt="블렌드 분석 1"/></td>
+    <td><img src="image/IMG_1239.jpeg" width="100%" alt="블렌드 분석 2"/></td>
+  </tr>
+  <tr style="height: 20px;"></tr> <!-- 행 간 격리 공간 -->
+  <tr>
+    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">3. 블렌드 분석 (3)</td>
+    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">4. 변화하는 나</td>
+    <td style="width: 20%; font-weight: bold; padding-bottom: 8px;">5. 이끄는 알림</td>
+    <td style="width: 20%;"></td> <!-- 줄바꿈 후 빈 칸 채우기 -->
+  </tr>
+  <tr>
+    <td><img src="image/IMG_1244.jpeg" width="100%" alt="블렌드 분석 3"/></td>
+    <td><img src="image/IMG_1241.jpeg" width="100%" alt="변화하는 나"/></td>
+    <td><img src="image/IMG_1245.jpeg" width="100%" alt="이끄는 알림"/></td>
+    <td></td>
+  </tr>
+</table>
 
 # 참고사항
 
