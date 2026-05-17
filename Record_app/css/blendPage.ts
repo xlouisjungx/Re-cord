@@ -21,7 +21,7 @@ export default StyleSheet.create({
   backBtn: { padding: 5, marginRight: 10 },
   profileInfo: { justifyContent: 'center' },
   profileName: { fontWeight: '800', fontSize: 16, color: '#fff' },
-  mbtiTag: { fontSize: 11, color: '#FF4D4D', fontWeight: '600' },
+  mbtiTag: { fontSize: 11, color: '#EAB877', fontWeight: '600' }, // 🌟 RED -> GOLD
 
   scrollContent: {
     paddingHorizontal: 25,
@@ -40,13 +40,13 @@ export default StyleSheet.create({
     borderColor: '#333',
   },
   badge: {
-    backgroundColor: '#FF4D4D',
+    backgroundColor: '#EAB877', // 🌟 RED -> GOLD
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 8,
     marginBottom: 15,
   },
-  badgeText: { color: '#fff', fontSize: 10, fontWeight: '900' },
+  badgeText: { color: '#121212', fontSize: 10, fontWeight: '900' },
   requestText: {
     fontSize: 18,
     textAlign: 'center',
@@ -62,8 +62,8 @@ export default StyleSheet.create({
     minWidth: 110,
     alignItems: 'center',
   },
-  acceptBtn: { backgroundColor: '#FF4D4D' },
-  acceptBtnText: { color: '#fff', fontWeight: '800' },
+  acceptBtn: { backgroundColor: '#EAB877' }, // 🌟 RED -> GOLD
+  acceptBtnText: { color: '#121212', fontWeight: '800' },
   declineBtn: { backgroundColor: '#222' },
   declineBtnText: { color: '#888', fontWeight: '700' },
 
@@ -97,12 +97,12 @@ export default StyleSheet.create({
     paddingVertical: 2,
     borderRadius: 6,
   },
-  miniBadgeText: { fontSize: 12, color: '#FF4D4D', fontWeight: '800' },
+  miniBadgeText: { fontSize: 12, color: '#EAB877', fontWeight: '800' }, // 🌟 RED -> GOLD
 
   // 리포트 상세 내용
   accordionContent: { padding: 20 },
   scoreSection: { alignItems: 'center', marginBottom: 25 },
-  scoreText: { fontSize: 50, fontWeight: '900', color: '#FF4D4D' },
+  scoreText: { fontSize: 50, fontWeight: '900', color: '#EAB877' }, // 🌟 RED -> GOLD
   tagLabel: { fontSize: 14, color: '#888', fontWeight: '700', marginTop: 5 },
   infoBox: {
     backgroundColor: '#1A1A1A',
@@ -114,7 +114,7 @@ export default StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     marginBottom: 8,
-    color: '#FF4D4D',
+    color: '#EAB877', // 🌟 RED -> GOLD
   },
   infoText: { fontSize: 13, color: '#BBB' },
   detailSection: { marginBottom: 20 },
@@ -162,6 +162,6 @@ export default StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 15,
   },
-  gaugeFill: { height: '100%', backgroundColor: '#FF4D4D' },
-  percentText: { fontSize: 20, fontWeight: '900', color: '#FF4D4D' },
+  gaugeFill: { height: '100%', backgroundColor: '#EAB877' }, // 🌟 RED -> GOLD
+  percentText: { fontSize: 20, fontWeight: '900', color: '#EAB877' }, // 🌟 RED -> GOLD
 });

@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
 const { width } = Dimensions.get('window');
-const HEADER_HEIGHT = Constants.statusBarHeight + 75; // 슬림 헤더 높이 통일
+const HEADER_HEIGHT = Constants.statusBarHeight + 75;
 
 export default StyleSheet.create({
   header: {
@@ -29,12 +29,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   profileName: { fontWeight: '800', fontSize: 16, color: '#fff' },
-  mbtiTag: { fontSize: 11, color: '#FF4D4D', fontWeight: '600' },
+  mbtiTag: { fontSize: 11, color: '#EAB877', fontWeight: '600' }, // 🌟 RED -> GOLD
 
   scrollContent: {
     paddingHorizontal: 25,
     paddingTop: 15,
-    paddingBottom: 120, // 하단 홈 바 대응
+    paddingBottom: 120,
   },
   title: { fontSize: 24, fontWeight: '800', marginTop: 25, color: '#fff' },
   subTitle: {
@@ -59,18 +59,18 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: '#333',
   },
-  selectedPeriodBtn: { backgroundColor: '#FF4D4D', borderColor: '#FF4D4D' },
+  selectedPeriodBtn: { backgroundColor: '#EAB877', borderColor: '#EAB877' }, // 🌟 RED -> GOLD
   periodText: { fontSize: 12, color: '#777', fontWeight: '600' },
-  selectedPeriodText: { color: '#fff', fontWeight: '700' },
+  selectedPeriodText: { color: '#121212', fontWeight: '700' },
 
   analyzeBtn: {
-    backgroundColor: '#FF4D4D',
+    backgroundColor: '#EAB877', // 🌟 RED -> GOLD
     padding: 18,
     borderRadius: 16,
     alignItems: 'center',
     marginBottom: 30,
   },
-  analyzeBtnText: { color: '#fff', fontWeight: '800', fontSize: 16 },
+  analyzeBtnText: { color: '#121212', fontWeight: '800', fontSize: 16 },
 
   divider: { height: 1, backgroundColor: '#333', marginBottom: 30 },
 
@@ -84,13 +84,13 @@ export default StyleSheet.create({
   },
   cardHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 15 },
   tag: {
-    backgroundColor: '#2D1A1A',
+    backgroundColor: '#2A2115', // 🌟 RED BG -> GOLD BROWN BG
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 8,
     marginRight: 10,
   },
-  tagText: { color: '#FF4D4D', fontSize: 11, fontWeight: '800' },
+  tagText: { color: '#EAB877', fontSize: 11, fontWeight: '800' }, // 🌟 RED -> GOLD
   dateText: { flex: 1, color: '#666', fontSize: 12 },
 
   insightText: {
@@ -108,7 +108,7 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   graphLabel: { fontSize: 12, color: '#888', fontWeight: '600' },
-  graphValue: { fontSize: 12, color: '#FF4D4D', fontWeight: '800' },
+  graphValue: { fontSize: 12, color: '#EAB877', fontWeight: '800' }, // 🌟 RED -> GOLD
   progressBarBg: {
     height: 6,
     backgroundColor: '#1A1A1A',
@@ -117,7 +117,7 @@ export default StyleSheet.create({
   },
   progressBarFill: {
     height: '100%',
-    backgroundColor: '#FF4D4D',
+    backgroundColor: '#EAB877', // 🌟 RED -> GOLD
     borderRadius: 3,
   },
 

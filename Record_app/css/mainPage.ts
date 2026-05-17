@@ -2,7 +2,6 @@ import { StyleSheet, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
 const { width, height } = Dimensions.get('window');
-// 헤더 높이를 슬림하게 조절
 const HEADER_HEIGHT = Constants.statusBarHeight + 75;
 
 export default StyleSheet.create({
@@ -13,7 +12,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 25,
-    backgroundColor: 'rgba(18, 18, 18, 0.8)', // 투명도 조절하여 원이 비치게 함
+    backgroundColor: 'rgba(18, 18, 18, 0.8)',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     zIndex: 10,
@@ -31,12 +30,12 @@ export default StyleSheet.create({
   },
   profileInfo: { marginLeft: 12 },
   profileName: { fontWeight: '800', fontSize: 16, color: '#fff' },
-  mbtiTag: { fontSize: 11, color: '#FF4D4D', fontWeight: '600', marginTop: 1 },
+  mbtiTag: { fontSize: 11, color: '#EAB877', fontWeight: '600', marginTop: 1 }, // 🌟 RED -> GOLD
   moreBtn: { padding: 8 },
   scrollContent: {
     paddingHorizontal: 25,
     paddingTop: 15,
-    paddingBottom: 150, // 하단 홈 바 영역 침범 방지
+    paddingBottom: 150,
   },
   title: { fontSize: 26, fontWeight: '800', marginTop: 25, color: '#fff' },
   subtitle: { color: '#888', fontSize: 14, marginBottom: 25, marginTop: 5 },
@@ -55,8 +54,8 @@ export default StyleSheet.create({
     borderColor: '#333',
   },
   emoText: { color: '#777', fontWeight: '600', fontSize: 13 },
-  selectedEmo: { backgroundColor: '#FF4D4D', borderColor: '#FF4D4D' },
-  selectedEmoText: { color: '#fff', fontWeight: '700' },
+  selectedEmo: { backgroundColor: '#EAB877', borderColor: '#EAB877' }, // 🌟 RED -> GOLD
+  selectedEmoText: { color: '#121212', fontWeight: '700' }, // 골드 배경 위 가시성을 위해 어두운 색 변경
   inputBox: {
     backgroundColor: 'rgba(26, 26, 26, 0.9)',
     padding: 20,
@@ -67,19 +66,19 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: '#FF4D4D',
+    color: '#EAB877', // 🌟 RED -> GOLD
     fontWeight: '800',
     marginBottom: 10,
   },
   input: { height: 90, textAlignVertical: 'top', fontSize: 16, color: '#fff' },
   submitBtn: {
-    backgroundColor: '#FF4D4D',
+    backgroundColor: '#EAB877', // 🌟 RED -> GOLD
     padding: 18,
     borderRadius: 16,
     alignItems: 'center',
     marginBottom: 35,
   },
-  submitText: { color: '#fff', fontWeight: '800', fontSize: 16 },
+  submitText: { color: '#121212', fontWeight: '800', fontSize: 16 }, // 가시성 확보
   logCard: {
     backgroundColor: 'rgba(30, 30, 30, 0.75)',
     padding: 18,
@@ -95,12 +94,12 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   logTag: {
-    backgroundColor: '#2D1A1A',
+    backgroundColor: '#2A2115', // 🌟 RED BG -> GOLD BROWN BG
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 8,
   },
-  logTagText: { color: '#FF4D4D', fontSize: 11, fontWeight: '700' },
+  logTagText: { color: '#EAB877', fontSize: 11, fontWeight: '700' }, // 🌟 RED -> GOLD
   logTimeText: { color: '#666', fontSize: 11 },
   logContentText: { fontSize: 15, color: '#DDD', lineHeight: 22 },
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.85)' },
@@ -123,4 +122,11 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
   },
   menuText: { marginLeft: 10, fontSize: 14, color: '#fff' },
+  emptyLogsText: {
+    color: '#555',
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 14,
+    fontStyle: 'italic',
+  },
 });

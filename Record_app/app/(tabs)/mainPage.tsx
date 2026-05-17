@@ -16,22 +16,19 @@ import {
 
 import styles from '../../css/mainPage';
 import globalStyles from '../../css/globalStyles';
+import { useLogs } from '../context/LogContext'; // Context Hook 사용
+import { scheduleAngryNotifications } from '../../css/notificationManager'; // 🔔 듀오링고 알림 매니저 임포트
 
 const { width, height } = Dimensions.get('window');
-
-interface LogItem {
-  id: number;
-  emotion: string;
-  content: string;
-  time: string;
-}
 
 export default function MainScreen() {
   const [selectedEmo, setSelectedEmo] = useState('평온');
   const [inputText, setInputText] = useState('');
-  const [logs, setLogs] = useState<LogItem[]>([]);
   const [menuVisible, setMenuVisible] = useState(false);
   const router = useRouter();
+
+  // Context에서 직접 완전하게 값을 주해옵니다.
+  const { logs, addLog, mbti } = useLogs();
 
   // --- 튕기는 원 애니메이션 설정 ---
   const moveAnim1 = useRef(
@@ -56,24 +53,21 @@ export default function MainScreen() {
     createBouncingAnim(moveAnim2);
   }, []);
 
+  // 🔔 [추가] 앱 접속 시 듀오링고 스타일의 미접속 독촉 알림 스케줄링 가동
+  useEffect(() => {
+    scheduleAngryNotifications();
+  }, []);
+
   const handleSave = () => {
     if (!inputText.trim()) return;
-    const newLog: LogItem = {
-      id: Date.now(),
-      emotion: selectedEmo,
-      content: inputText,
-      time: new Date().toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    };
-    setLogs([newLog, ...logs]);
+
+    // 정상화된 전역 상태 저장 함수 직접 호출
+    addLog(selectedEmo, inputText);
     setInputText('');
   };
 
   return (
     <View style={globalStyles.recordBackground}>
-      {/* 꽉 찬 화면을 위해 translucent와 backgroundColor 설정 필수 */}
       <StatusBar
         barStyle="light-content"
         translucent
@@ -96,7 +90,9 @@ export default function MainScreen() {
           </View>
           <View style={styles.profileInfo}>
             <Text style={styles.profileName}>현식님</Text>
-            <Text style={styles.mbtiTag}>INFJ - 분석가</Text>
+            <Text style={styles.mbtiTag}>
+              {mbti ? `${mbti} - 분석가` : 'INFJ - 분석가'}
+            </Text>
           </View>
         </View>
         <TouchableOpacity
@@ -148,17 +144,23 @@ export default function MainScreen() {
           <Text style={styles.submitText}>심리 분석 및 저장</Text>
         </TouchableOpacity>
 
-        {logs.map((log) => (
-          <View key={log.id} style={styles.logCard}>
-            <View style={styles.logCardHeader}>
-              <View style={styles.logTag}>
-                <Text style={styles.logTagText}>{log.emotion}</Text>
+        {/* 데이터가 없을 때 보일 가이드 텍스트 */}
+        {(!logs || logs.length === 0) && (
+          <Text style={styles.emptyLogsText}>아직 기록된 로그가 없습니다.</Text>
+        )}
+
+        {logs &&
+          logs.map((log) => (
+            <View key={log.id} style={styles.logCard}>
+              <View style={styles.logCardHeader}>
+                <View style={styles.logTag}>
+                  <Text style={styles.logTagText}>{log.emotion}</Text>
+                </View>
+                <Text style={styles.logTimeText}>{log.time}</Text>
               </View>
-              <Text style={styles.logTimeText}>{log.time}</Text>
+              <Text style={styles.logContentText}>{log.content}</Text>
             </View>
-            <Text style={styles.logContentText}>{log.content}</Text>
-          </View>
-        ))}
+          ))}
       </ScrollView>
 
       {/* 메뉴 모달 */}
@@ -168,6 +170,7 @@ export default function MainScreen() {
           onPress={() => setMenuVisible(false)}
         >
           <View style={styles.dropDownMenu}>
+            {/* 🌟 1. 패턴 분석 리포트 링크 */}
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
@@ -178,6 +181,8 @@ export default function MainScreen() {
               <Ionicons name="analytics-outline" size={18} color="#fff" />
               <Text style={styles.menuText}>패턴 분석 리포트</Text>
             </TouchableOpacity>
+
+            {/* 🌟 2. 마이크로 챌린지 링크 */}
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
@@ -188,6 +193,8 @@ export default function MainScreen() {
               <Ionicons name="flash-outline" size={18} color="#fff" />
               <Text style={styles.menuText}>마이크로 챌린지</Text>
             </TouchableOpacity>
+
+            {/* 🌟 3. 관계 블렌드 링크 */}
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
@@ -197,6 +204,18 @@ export default function MainScreen() {
             >
               <Ionicons name="git-network-outline" size={18} color="#fff" />
               <Text style={styles.menuText}>관계 블렌드</Text>
+            </TouchableOpacity>
+
+            {/* 🌟 4. 내면 행동 그래프(다이내믹 아이덴티티) 링크 */}
+            <TouchableOpacity
+              style={styles.menuItem}
+              onPress={() => {
+                setMenuVisible(false);
+                router.push('/mbtiAnalysisPage');
+              }}
+            >
+              <Ionicons name="git-branch-outline" size={18} color="#fff" />
+              <Text style={styles.menuText}>내면 행동 그래프</Text>
             </TouchableOpacity>
           </View>
         </Pressable>

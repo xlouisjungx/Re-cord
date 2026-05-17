@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Modal,
@@ -17,6 +17,7 @@ import {
 
 import styles from '../../css/blendPage';
 import globalStyles from '../../css/globalStyles';
+import { useLogs } from '../context/LogContext';
 
 const { width, height } = Dimensions.get('window');
 
@@ -43,7 +44,7 @@ const friendsData = [
     name: '박빌런',
     score: 3,
     tag: '극과 극의 평행선',
-    good: '서로의 사고방식이 너무나 달라, 아예 새로운 시각을 강제로(?) 경험하게 해주는 자극제가 될 수 있습니다.',
+    good: '서로의 사고방식이 너무나 달라, 아예 새로운 시각을 경험하게 해주는 자극제가 될 수 있습니다.',
     better:
       '사소한 단어 선택부터 가치관까지 충돌할 가능성이 매우 높습니다. 업무적 접점을 최소화하거나 제3의 중재자가 필수적입니다.',
     matchPoint: '희박한 공통점, 극단적인 소통 방식 차이',
@@ -52,14 +53,13 @@ const friendsData = [
 
 export default function BlendScreen() {
   const router = useRouter();
-  const [status, setStatus] = useState<'request' | 'loading' | 'result'>(
-    'request',
-  );
-  const [progress] = useState(new Animated.Value(0));
   const [percent, setPercent] = useState(0);
   const [expandedId, setExpandedId] = useState<string | null>('1');
+  const [progress] = useState(new Animated.Value(0));
 
-  // 배경 애니메이션
+  // 전역 상태에서 관계 블렌딩 진행도 및 수락 상태 핸들러 가져오기
+  const { blendStatus, setBlendStatusState } = useLogs();
+
   const moveAnim1 = useRef(
     new Animated.ValueXY({ x: width * 0.4, y: height * 0.2 }),
   ).current;
@@ -83,7 +83,7 @@ export default function BlendScreen() {
   }, []);
 
   const handleAccept = () => {
-    setStatus('loading');
+    setBlendStatusState('loading');
     Animated.timing(progress, {
       toValue: 1,
       duration: 3000,
@@ -94,7 +94,7 @@ export default function BlendScreen() {
     );
     setTimeout(() => {
       progress.removeListener(listener);
-      setStatus('result');
+      setBlendStatusState('result');
     }, 3000);
   };
 
@@ -126,7 +126,7 @@ export default function BlendScreen() {
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <TouchableOpacity
-            onPress={() => router.replace('/(tabs)')}
+            onPress={() => router.replace('/mainPage')}
             style={styles.backBtn}
           >
             <Ionicons name="chevron-back" size={24} color="#fff" />
@@ -136,21 +136,23 @@ export default function BlendScreen() {
             <Text style={styles.mbtiTag}>관계 시너지 센터</Text>
           </View>
         </View>
+        {/* 🌟 수정: 헤더 네트워크 그래프 아이콘 RED -> GOLD */}
         <Ionicons
           name="git-network"
           size={22}
-          color="#FF4D4D"
+          color="#EAB877"
           style={{ marginRight: 5 }}
         />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {status === 'request' && (
+        {blendStatus === 'request' && (
           <View style={styles.requestCard}>
             <View style={styles.badge}>
               <Text style={styles.badgeText}>NEW</Text>
             </View>
-            <Ionicons name="mail-unread-outline" size={48} color="#FF4D4D" />
+            {/* 🌟 수정: 메일 읽지않음 아이콘 RED -> GOLD */}
+            <Ionicons name="mail-unread-outline" size={48} color="#EAB877" />
             <Text style={styles.requestText}>
               <Text style={{ fontWeight: '800', color: '#fff' }}>
                 김레코드님
@@ -160,7 +162,7 @@ export default function BlendScreen() {
             <View style={styles.btnRow}>
               <TouchableOpacity
                 style={[styles.actionBtn, styles.declineBtn]}
-                onPress={() => router.replace('/(tabs)')}
+                onPress={() => router.replace('/mainPage')}
               >
                 <Text style={styles.declineBtnText}>거절</Text>
               </TouchableOpacity>
@@ -174,7 +176,7 @@ export default function BlendScreen() {
           </View>
         )}
 
-        {status === 'result' && (
+        {blendStatus === 'result' && (
           <View>
             <Text style={styles.title}>블렌드 리포트</Text>
             {friendsData.map((friend) => (
@@ -192,13 +194,14 @@ export default function BlendScreen() {
                     <View
                       style={[
                         styles.miniBadge,
-                        friend.score < 10 && { backgroundColor: '#331111' },
+                        // 🌟 수정: 낮은 스코어일 때의 빨간 인라인 배경 처리를 골드 테마에 맞춘 차분한 다크 엠버톤 스킨으로 교체
+                        friend.score < 10 && { backgroundColor: '#2A2115' },
                       ]}
                     >
                       <Text
                         style={[
                           styles.miniBadgeText,
-                          friend.score < 10 && { color: '#FF4D4D' },
+                          friend.score < 10 && { color: '#EAB877' }, // 🌟 RED -> GOLD
                         ]}
                       >
                         {friend.score}%
@@ -220,7 +223,7 @@ export default function BlendScreen() {
                       <Text
                         style={[
                           styles.scoreText,
-                          friend.score < 10 && { color: '#FF4D4D' },
+                          friend.score < 10 && { color: '#EAB877' }, // 🌟 RED -> GOLD
                         ]}
                       >
                         {friend.score}%
@@ -249,7 +252,11 @@ export default function BlendScreen() {
         )}
       </ScrollView>
 
-      <Modal visible={status === 'loading'} transparent animationType="fade">
+      <Modal
+        visible={blendStatus === 'loading'}
+        transparent
+        animationType="fade"
+      >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>데이터 분석 중</Text>

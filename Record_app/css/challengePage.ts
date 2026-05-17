@@ -17,30 +17,27 @@ export default StyleSheet.create({
     borderBottomRightRadius: 30,
     zIndex: 10,
   },
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+  headerLeft: { flexDirection: 'row', alignItems: 'center' },
   backBtn: { padding: 5, marginRight: 10 },
   profileInfo: { justifyContent: 'center' },
   profileName: { fontWeight: '800', fontSize: 16, color: '#fff' },
-  mbtiTag: { fontSize: 11, color: '#FF4D4D', fontWeight: '600' },
+  mbtiTag: { fontSize: 11, color: '#EAB877', fontWeight: '600' }, // 🌟 RED -> GOLD
 
   scrollContent: {
     paddingHorizontal: 25,
     paddingTop: 10,
-    paddingBottom: 120, // 하단 홈 바 여백
+    paddingBottom: 120,
   },
   titleSection: { flexDirection: 'row', alignItems: 'center', marginTop: 25 },
   title: { fontSize: 24, fontWeight: '800', color: '#fff' },
   badge: {
-    backgroundColor: '#2D1A1A',
+    backgroundColor: '#2A2115', // 🌟 RED BG -> GOLD BROWN BG
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,
     marginLeft: 10,
   },
-  badgeText: { color: '#FF4D4D', fontSize: 11, fontWeight: '700' },
+  badgeText: { color: '#EAB877', fontSize: 11, fontWeight: '700' }, // 🌟 RED -> GOLD
   subtitle: { color: '#888', fontSize: 14, marginTop: 5, marginBottom: 25 },
 
   card: {
@@ -53,7 +50,7 @@ export default StyleSheet.create({
     borderColor: '#333',
   },
   completedCard: {
-    backgroundColor: 'rgba(0, 184, 148, 0.1)',
+    backgroundColor: 'rgba(0, 184, 148, 0.1)', // 미션 완료 초록 핏 유지
     borderColor: '#00B894',
   },
   cardIcon: { justifyContent: 'center', marginRight: 15 },

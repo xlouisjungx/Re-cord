@@ -2,8 +2,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Modal,
-  Pressable,
   ScrollView,
   StatusBar,
   Text,
@@ -16,23 +14,17 @@ import {
 
 import styles from '../../css/reportPage';
 import globalStyles from '../../css/globalStyles';
+import { useLogs } from '../context/LogContext';
 
 const { width, height } = Dimensions.get('window');
 
-interface AnalysisReport {
-  id: number;
-  period: string;
-  date: string;
-  insight: string;
-  score: number;
-}
-
 export default function ReportScreen() {
   const router = useRouter();
-  const [reports, setReports] = useState<AnalysisReport[]>([]);
   const [selectedPeriod, setSelectedPeriod] = useState('하루');
 
-  // --- 배경 애니메이션 (메인과 동일한 무드 유지) ---
+  // 전역 상태에서 리포트 목록과 동적 생성 기능 연동
+  const { reports, generateDynamicReport, deleteReportState } = useLogs();
+
   const moveAnim1 = useRef(
     new Animated.ValueXY({ x: width * 0.7, y: height * 0.1 }),
   ).current;
@@ -55,26 +47,8 @@ export default function ReportScreen() {
     createBouncingAnim(moveAnim2);
   }, []);
 
-  const generateReport = () => {
-    const newReport: AnalysisReport = {
-      id: Date.now(),
-      period: selectedPeriod,
-      date: new Date().toLocaleDateString(),
-      insight: getDummyInsight(selectedPeriod),
-      score: Math.floor(Math.random() * 40) + 60,
-    };
-    setReports([newReport, ...reports]);
-  };
-
-  const getDummyInsight = (period: string) => {
-    const insights = {
-      하루: '오늘 당신은 외부 자극보다 내면의 평온을 유지하려 노력했습니다.',
-      한달: '지난 한 달간 INFJ 특유의 공감 능력이 빛을 발했지만 에너지가 소모되었습니다.',
-      두달: '두 달 전과 비교했을 때, 감정 기복 다스리는 능력이 15% 향상되었습니다.',
-      직접입력:
-        '지정 기간 동안 당신은 계획적인 완벽주의 성향을 강하게 보였습니다.',
-    };
-    return insights[period as keyof typeof insights] || '데이터가 부족합니다.';
+  const handleGenerate = () => {
+    generateDynamicReport(selectedPeriod);
   };
 
   const deleteReport = (id: number) => {
@@ -83,7 +57,7 @@ export default function ReportScreen() {
       {
         text: '삭제',
         style: 'destructive',
-        onPress: () => setReports(reports.filter((r) => r.id !== id)),
+        onPress: () => deleteReportState(id),
       },
     ]);
   };
@@ -96,7 +70,6 @@ export default function ReportScreen() {
         backgroundColor="transparent"
       />
 
-      {/* 배경 애니메이션 원 */}
       <Animated.View
         style={[globalStyles.topBlurCircle, moveAnim1.getLayout()]}
       />
@@ -104,11 +77,10 @@ export default function ReportScreen() {
         style={[globalStyles.bottomBlurCircle, moveAnim2.getLayout()]}
       />
 
-      {/* 헤더 영역 (mainPage와 동일한 슬림 디자인) */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <TouchableOpacity
-            onPress={() => router.replace('/(tabs)')}
+            onPress={() => router.replace('/mainPage')}
             style={styles.backBtn}
           >
             <Ionicons name="chevron-back" size={24} color="#fff" />
@@ -121,7 +93,7 @@ export default function ReportScreen() {
         <Ionicons
           name="analytics"
           size={24}
-          color="#FF4D4D"
+          color="#EAB877"
           style={{ marginRight: 5 }}
         />
       </View>
@@ -154,7 +126,7 @@ export default function ReportScreen() {
           ))}
         </View>
 
-        <TouchableOpacity style={styles.analyzeBtn} onPress={generateReport}>
+        <TouchableOpacity style={styles.analyzeBtn} onPress={handleGenerate}>
           <Text style={styles.analyzeBtnText}>
             {selectedPeriod} 데이터 리포트 생성
           </Text>
@@ -172,31 +144,44 @@ export default function ReportScreen() {
           reports.map((report) => (
             <View key={report.id} style={styles.reportCard}>
               <View style={styles.cardHeader}>
-                <View style={styles.tag}>
-                  <Text style={styles.tagText}>{report.period}</Text>
+                <View
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}
+                >
+                  <View style={styles.tag}>
+                    <Text style={styles.tagText}>{report.period}</Text>
+                  </View>
+
+                  {report.mbtiTag && (
+                    <View
+                      style={[
+                        styles.tag,
+                        {
+                          backgroundColor: 'rgba(234, 184, 119, 0.15)',
+                          borderColor: '#EAB877',
+                          borderWidth: 1,
+                        },
+                      ]}
+                    >
+                      <Text
+                        style={[
+                          styles.tagText,
+                          { color: '#EAB877', fontWeight: '700' },
+                        ]}
+                      >
+                        {report.mbtiTag}
+                      </Text>
+                    </View>
+                  )}
                 </View>
+
                 <Text style={styles.dateText}>{report.date}</Text>
                 <TouchableOpacity onPress={() => deleteReport(report.id)}>
-                  <Ionicons name="trash-outline" size={20} color="#FF4D4D" />
+                  <Ionicons name="trash-outline" size={20} color="#EAB877" />
                 </TouchableOpacity>
               </View>
 
               <Text style={styles.insightText}>{report.insight}</Text>
-
-              <View style={styles.graphContainer}>
-                <View style={styles.graphLabelRow}>
-                  <Text style={styles.graphLabel}>심리적 안정도</Text>
-                  <Text style={styles.graphValue}>{report.score}%</Text>
-                </View>
-                <View style={styles.progressBarBg}>
-                  <View
-                    style={[
-                      styles.progressBarFill,
-                      { width: `${report.score}%` },
-                    ]}
-                  />
-                </View>
-              </View>
+              {/* 🌟 '심리적 안정도' 세션(graphContainer 영역) 전체 삭제 완료 */}
             </View>
           ))
         )}
