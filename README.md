@@ -31,17 +31,17 @@ Re:cord는 사용자의 감정과 행동 기록을 기반으로
 # 실행 시, 앱 모습
 
 1. 감정로그 작성
-   ![alt text](IMG_1235.jpeg)
+   ![alt text](image/IMG_1235.jpeg)
 2. 마이크로 챌린지
-   ![alt text](IMG_1237.jpeg)
+   ![alt text](image/IMG_1237.jpeg)
 3. 블렌드를 통한 타인과 나에 대한 분석
-   ![alt text](IMG_1238.jpeg)
-   ![alt text](IMG_1239.jpeg)
-   ![alt text](IMG_1244.jpeg)
+   ![alt text](image/IMG_1238.jpeg)
+   ![alt text](image/IMG_1239.jpeg)
+   ![alt text](image/IMG_1244.jpeg)
 4. 하루하루 감정로그를 적으며 변화하는 나
-   ![alt text](IMG_1241.jpeg)
+   ![alt text](image/IMG_1241.jpeg)
 5. 앱의 알림을 통해 사용자를 이끄는 메시지
-   ![alt text](IMG_1245.jpeg)
+   ![alt text](image/IMG_1245.jpeg)
 
 # 참고사항
 
