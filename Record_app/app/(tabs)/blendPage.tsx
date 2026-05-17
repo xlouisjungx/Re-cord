@@ -32,8 +32,6 @@ const friendsData = [
   {
     id: '1',
     name: '김레코드',
-    score: 94,
-    tag: '환상의 페어링',
     good: '현식님의 체계적인 공학적 사고와 김레코드님의 섬세한 기록 습관이 만나 완벽한 아카이빙이 가능합니다.',
     better:
       '둘 다 기준이 높아 피로할 수 있으니 80% 완성도에서 끊어가는 연습이 필요합니다.',
@@ -42,8 +40,6 @@ const friendsData = [
   {
     id: '3',
     name: '박빌런',
-    score: 3,
-    tag: '극과 극의 평행선',
     good: '서로의 사고방식이 너무나 달라, 아예 새로운 시각을 경험하게 해주는 자극제가 될 수 있습니다.',
     better:
       '사소한 단어 선택부터 가치관까지 충돌할 가능성이 매우 높습니다. 업무적 접점을 최소화하거나 제3의 중재자가 필수적입니다.',
@@ -136,7 +132,6 @@ export default function BlendScreen() {
             <Text style={styles.mbtiTag}>관계 시너지 센터</Text>
           </View>
         </View>
-        {/* 🌟 수정: 헤더 네트워크 그래프 아이콘 RED -> GOLD */}
         <Ionicons
           name="git-network"
           size={22}
@@ -145,13 +140,15 @@ export default function BlendScreen() {
         />
       </View>
 
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
         {blendStatus === 'request' && (
           <View style={styles.requestCard}>
             <View style={styles.badge}>
               <Text style={styles.badgeText}>NEW</Text>
             </View>
-            {/* 🌟 수정: 메일 읽지않음 아이콘 RED -> GOLD */}
             <Ionicons name="mail-unread-outline" size={48} color="#EAB877" />
             <Text style={styles.requestText}>
               <Text style={{ fontWeight: '800', color: '#fff' }}>
@@ -178,7 +175,7 @@ export default function BlendScreen() {
 
         {blendStatus === 'result' && (
           <View>
-            <Text style={styles.title}>블렌드 리포트</Text>
+            <Text style={styles.title}>블렌드 시너지 분석</Text>
             {friendsData.map((friend) => (
               <View key={friend.id} style={styles.accordionContainer}>
                 <TouchableOpacity
@@ -190,23 +187,8 @@ export default function BlendScreen() {
                   activeOpacity={0.7}
                 >
                   <View style={styles.row}>
-                    <Text style={styles.friendName}>현식 + {friend.name}</Text>
-                    <View
-                      style={[
-                        styles.miniBadge,
-                        // 🌟 수정: 낮은 스코어일 때의 빨간 인라인 배경 처리를 골드 테마에 맞춘 차분한 다크 엠버톤 스킨으로 교체
-                        friend.score < 10 && { backgroundColor: '#2A2115' },
-                      ]}
-                    >
-                      <Text
-                        style={[
-                          styles.miniBadgeText,
-                          friend.score < 10 && { color: '#EAB877' }, // 🌟 RED -> GOLD
-                        ]}
-                      >
-                        {friend.score}%
-                      </Text>
-                    </View>
+                    {/* 🌟 이름만 심플하게 노출 (우측 우측 식별 배지 및 마크 완전 삭제) */}
+                    <Text style={styles.friendName}>현식 ✕ {friend.name}</Text>
                   </View>
                   <Ionicons
                     name={
@@ -219,17 +201,9 @@ export default function BlendScreen() {
 
                 {expandedId === friend.id && (
                   <View style={styles.accordionContent}>
-                    <View style={styles.scoreSection}>
-                      <Text
-                        style={[
-                          styles.scoreText,
-                          friend.score < 10 && { color: '#EAB877' }, // 🌟 RED -> GOLD
-                        ]}
-                      >
-                        {friend.score}%
-                      </Text>
-                      <Text style={styles.tagLabel}>{friend.tag}</Text>
-                    </View>
+                    {/* 🌟 불필요한 라벨링 세션(scoreSection) 제거 후 여백 확보 */}
+                    <View style={{ paddingTop: 10 }} />
+
                     <View style={styles.infoBox}>
                       <Text style={styles.infoTitle}>💎 핵심 매칭 포인트</Text>
                       <Text style={styles.infoText}>{friend.matchPoint}</Text>
@@ -252,6 +226,7 @@ export default function BlendScreen() {
         )}
       </ScrollView>
 
+      {/* 수락 프로세스 로딩 진행도 상태창 (퍼센트 유지) */}
       <Modal
         visible={blendStatus === 'loading'}
         transparent
